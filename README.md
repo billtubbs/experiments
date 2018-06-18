@@ -1,5 +1,9 @@
 # Experiments
-Tools to setup and manage machine learning tests and experiments
+Tools to setup and manage machine learning tests and experiments on a remote machine.
+
+Screenshot:
+
+<IMG SRC="jobdispatcher_screenshot.png">
 
 (Requires Python version 3.3 or higher)
 
