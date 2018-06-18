@@ -3,7 +3,9 @@ Tools to setup and manage machine learning tests and experiments on a remote mac
 
 Screenshot:
 
-<IMG SRC="jobdispatcher_screenshot.png">
+<div style="width: 890px; height: 380px;">
+    <img src="jobdispatcher_screenshot.png" width="50%" height="50%">
+</div>
 
 (Requires Python version 3.3 or higher)
 
