@@ -17,6 +17,11 @@ scripts one after another from a queue. This is useful when you are
 working on a remote machine such as a GPU and want to run multiple 
 experiments with minimum supervision.
 
+It uses the `CUDA_VISIBLE_DEVICES` environment variable so that each job 
+dispatcher queue is dedicated to one GPU (as described [here](https://stackoverflow.com/questions/39649102/how-do-i-select-which-gpu-to-run-a-job-on)) allowing 
+you to run scripts in parallel on more than one GPU.
+
+
 ### Overview
 
 First it creates a directory in the location it was launched from with 
