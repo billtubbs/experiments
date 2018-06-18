@@ -164,6 +164,12 @@ $ ls gpu0/failed
 bad.sh
 ```
 
+One nice feature of job dispatcher is that you can remove scripts from the queue (before 
+they are executed) without interrupting execution of the current job. Job dispatcher 
+executes any new scripts it finds in the queue after all previous jobs are complete.
+
+New scripts added are executed in the alpha-numeric order of their filenames.
+
 
 ### Use for machine learning
 
