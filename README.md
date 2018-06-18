@@ -11,11 +11,11 @@ Screenshot:
 
 ## 1. Job Dispatcher
 
-`jobdispatcher.py` is a simple Python script that allows you to automate 
+[`jobdispatcher.py`](scripts/jobdispatcher.py) is a simple Python script that allows you to automate 
 the execution of shell scripts. The purpose of the tool is to execute 
 scripts one after another from a queue. This is useful when you are 
 working on a remote machine such as a GPU and want to run multiple 
-experiments without too much supervision.
+experiments with minimum supervision.
 
 ### Overview
 
@@ -41,7 +41,7 @@ When complete, it is moved to the `complete` directory.
 Log output is written to `logfile.txt`.
 
 
-### Example usage
+### Basic usage example
 
 #### 1. Get help text
 
@@ -91,7 +91,7 @@ Keep the log file session open so you can monitor what the job dispatcher is doi
 #### 3. Running scripts
 
 Now, open a new session and move a shell script into the queue (in this demo
-we copy the three 'dummy' scripts provided in the `examples` folder):
+we copy the three 'dummy' scripts provided in the [`examples`](scripts/examples/) folder):
 
 ```
 $ ls examples/*
@@ -160,7 +160,10 @@ bad.sh
 ```
 
 
+### Use for machine learning
 
+For an example of how to design scripts for running a machine-learning experiment, see the
+[`TEMPLATE.sh`](scripts/examples/TEMPLATE.sh) script in the [`examples`](scripts/examples/) folder.
 
  
  
