@@ -171,6 +171,39 @@ executes any new scripts it finds in the queue after all previous jobs are compl
 New scripts added are executed in the alpha-numeric order of their filenames.
 
 
+## 2. Automated creation of shell scripts
+
+The module `utils.py` in the `scripts` folder contains a function `create_shell_script`
+that can be used to generate executable shell scripts with pre-defined parameters.
+
+```
+Here is a simple example:
+>>> from utils import create_shell_script
+>>> params = {'model': 'LeNet', 'dataset': 'mnist'}
+>>> headers = ["LOGDIR='../logs/mnist/'", "mkdir -p $LOGDIR"]
+>>> end = "| tee $LOGDIR/log.out"
+>>> myscript = create_shell_script(params, headers=headers, end=end)
+>>> print(myscript)
+#!/bin/sh
+
+# This script was automatically generated
+# user: billtubbs
+# date: 2018-10-08 10:13
+
+LOGDIR='../logs/mnist/'
+mkdir -p $LOGDIR
+
+python -u main.py \
+    --model LeNet \
+    --dataset mnist \
+    | tee $LOGDIR/log.out
+
+>>> 
+```
+
+The resulting scripts should work on linux machines but I have not tested it on other systems.
+
+
 ### Use for machine learning
 
 For an example of how to design scripts for running a machine-learning experiment, see the
