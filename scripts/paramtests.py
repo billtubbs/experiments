@@ -52,6 +52,7 @@ def create_params_generator(definitions, n_max=None):
     for key, value in definitions.items():
         if isinstance(value, collections.Sequence) and not \
             isinstance(value, str):
+            definitions = definitions.copy()  # Make a copy first
             definitions[key] = iter(value)
 
     while n_max is not 0:
@@ -71,7 +72,8 @@ def create_params_generator(definitions, n_max=None):
         except StopIteration:
             break
 
-        n_max -= 1
+        if n_max is not None:
+            n_max -= 1
 
         yield params
 
