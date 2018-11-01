@@ -1,5 +1,5 @@
 # Experiments
-This repo contains tools to setup and manage manage machine learning tests and experiments.  There are three main sets of tools here:
+This repo contains tools to setup and manage machine learning tests and experiments.  There are three main sets of tools here:
 
 1. [jobdispatcher.py](scripts/jobdispatcher.py) - tools to schedule and run multiple experiments on a remote machine
 2. [utils.py](scripts/utils.py) - automated creation of shell scripts to launch experiments
