@@ -210,6 +210,31 @@ python -u main.py \
 The resulting scripts should work on linux machines but I have not tested it on other systems.
 
 
+## 3. Generate random parameter values
+
+The file [paramtests.py](paramtests.py) contains a function `create_params_generator` that can
+be used to generate sequences of parameter values for experiments to find optimum parameter
+values (hyper-parameter tuning).
+
+`create_params_generator` is passed a dictionary of `definitions` for each parameter you want
+to generate values for.  This can contain fixed values, lists of values or you can pass it a
+function or random number generator to generate values.  `create_params_generator` returns a
+generator object that you can then use to produce a sequence of parameter values.
+
+Below is a simple example:
+
+```
+>>> from paramtests import create_params_generator
+>>> import numpy as np
+>>> param_defs = {'alpha': 0.5, 'beta': [0.1, 0.2, 0.3], 'gamma': np.random.rand}
+>>> params_generator = create_params_generator(param_defs)
+>>> for params in params_generator:
+... 	print(params)
+... 
+{'alpha': 0.5, 'beta': 0.1, 'gamma': 0.6700917758572317}
+{'alpha': 0.5, 'beta': 0.2, 'gamma': 0.3696650407122184}
+{'alpha': 0.5, 'beta': 0.3, 'gamma': 0.07025678164969629}
+```
 
  
  
