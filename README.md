@@ -241,5 +241,23 @@ Below is a simple example:
 {'alpha': 0.5, 'beta': 0.3, 'gamma': 0.07025678164969629}
 ```
 
- 
- 
+Use `functools.partial` or `lambda` functions to create tailor-made
+probability distributions.
+
+```
+>>> from functools import partial
+>>> param_defs = {  
+... 	'x': partial(np.random.normal, scale=10.0),                     
+... 	'P': partial(np.random.chisquare, 7),
+... 	'n': lambda: np.random.poisson(5) + 1
+... }
+>>> params_generator = create_params_generator(param_defs, n_max=5)
+>>> for params in params_generator:
+... 	print(params)
+... 
+{'x': 10.866392733237177, 'P': 1.7879487481495733, 'n': 8}
+{'x': 4.100138377094902, 'P': 6.298759704524363, 'n': 9}
+{'x': -2.9881706458306727, 'P': 4.430020434241061, 'n': 5}
+{'x': -20.402876749475553, 'P': 5.454405317774452, 'n': 4}
+{'x': -7.649933585537894, 'P': 4.41529026238565, 'n': 4}
+``` 
