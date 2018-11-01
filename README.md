@@ -5,6 +5,9 @@ This repo contains tools to setup and manage machine learning tests and experime
 2. [utils.py](scripts/utils.py) - automated creation of shell scripts to launch experiments
 3. [paramtests.py](scripts/paramtests.py) - function to generate random parameter values
 
+
+## 1. Job dispatcher
+
 Screenshot:
 
 <div style="width: 890px; height: 380px;">
@@ -12,8 +15,6 @@ Screenshot:
 </div>
 
 (Requires Python version 3.3 or higher)
-
-## 1. Job dispatcher
 
 [`jobdispatcher.py`](scripts/jobdispatcher.py) is a simple Python script that allows you to automate 
 the execution of shell scripts. The purpose of the tool is to execute 
