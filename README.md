@@ -1,5 +1,9 @@
 # Experiments
-Tools to setup and manage machine learning tests and experiments on a remote machine.
+This repo contains tools to setup and manage manage machine learning tests and experiments.  There are three main sets of tools here:
+
+1. [jobdispatcher.py](scripts/jobdispatcher.py) - tools to schedule and run multiple experiments on a remote machine
+2. [utils.py](scripts/utils.py) - automated creation of shell scripts to launch experiments
+3. [paramtests.py](scripts/paramtests.py) - function to generate random parameter values
 
 Screenshot:
 
@@ -9,7 +13,7 @@ Screenshot:
 
 (Requires Python version 3.3 or higher)
 
-## 1. Job Dispatcher
+## 1. Job dispatcher
 
 [`jobdispatcher.py`](scripts/jobdispatcher.py) is a simple Python script that allows you to automate 
 the execution of shell scripts. The purpose of the tool is to execute 
@@ -212,7 +216,7 @@ The resulting scripts should work on linux machines but I have not tested it on 
 
 ## 3. Generate random parameter values
 
-The file [paramtests.py](paramtests.py) contains a function `create_params_generator` that can
+The file [paramtests.py](scripts/paramtests.py) contains a function `create_params_generator` that can
 be used to generate sequences of parameter values for experiments to find optimum parameter
 values (hyper-parameter tuning).
 
