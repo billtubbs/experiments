@@ -1,24 +1,27 @@
 """Python script to automate the execution of shell scripts
 
-Launch jobdispatcher.py on a server and let it run in the background.
+Put jobdispatcher.py in a new sub-directory on a server where you want
+to execute the shell scripts.  Launch it and let it run in the background.
 
-It creates a directory in the location it was launched from
-with the gpu number specified by the argumnet gpu, e.g. 'gpu1'.
+It creates a new directory in the parent directory from which it was
+launched with a name like 'gpu0' (the number is determined by the --gpu
+argument).
 
 It then creates three subdirectories in that directory:
 - queue
 - completed
 - failed
 
-Then it waits for shell scripts (extension .sh) to appear in the queue
+Then it waits for shell scripts (extension .sh) to appear in the 'queue'
 directory. It checks every second and when it sees one or more they are
 added to a queue and each job is executed one after the other.
 
-To start running jobs, copy script files (e.g. mnist.sh) to the queue
-directory.
+To start running jobs, copy script files (e.g. my_script.sh) to the
+'queue' directory.
 
-First the script is moved to the current directory then executed with
-subprocess.run. When complete, it is moved to complete.
+First jobdispatcher moves the script to the parent directory and then
+executes it with subprocess.run.  When complete, it is moved to the
+'complete' directory.
 
 Log output is written to logfile.txt.
 """
@@ -33,28 +36,28 @@ import logging
 import argparse
 
 # Parse input arguments with argparse
-parser = argparse.ArgumentParser('Python script to automate the execution of '
-                                 'shell scripts')
+parser = argparse.ArgumentParser("Python script to automate the execution of "
+                                 "shell scripts on GPUs.")
 parser.add_argument('--gpu', type=int, required=True, metavar='GPU',
                     help='GPU id')
-parser.add_argument('--dir', type=str, default=None, metavar='DIR',
-                    help='Directory name for queues (optional)')
-parser.add_argument('--wait', type=int, default=1, metavar='WAIT',
-                    help='Wait time (seconds) between checks for new items '
-                    'in queue.')
+parser.add_argument('--dir', type=str, default='../', metavar='DIR',
+                    help="Directory name for queues (default: '../')")
+parser.add_argument('--wait', type=int, default=1, metavar='SEC',
+                    help="Wait time (seconds) between checks for new items "
+                    "in queue.")
 args = parser.parse_args()
 
 # Create subdirectories
 if args.dir:
     base = os.path.join(".", args.dir)
 else:
-    base = "."
+    base = '../'
 base = os.path.join(base, "gpu" + str(args.gpu))
 
-queue_path = base + "/queue"
-execution_path = "./"
-completed_jobs_path = base + "/completed"
-failed_jobs_path = base + "/failed"
+queue_path = base + '/queue'
+execution_path = './'
+completed_jobs_path = base + '/completed'
+failed_jobs_path = base + '/failed'
 logfile_path = base
 
 for directory in [queue_path, execution_path, completed_jobs_path,
