@@ -128,7 +128,7 @@ while True:
     try:
         sb = subprocess.run([os.path.join(execution_path, current_job)])
     except PermissionError as err:
-        logging.warning("PermissionError: {0}".format(err))
+        logging.warning("PermissionError: {}".format(err))
         destination_path = failed_jobs_path
     else:
         if sb.returncode == 0:
@@ -137,6 +137,8 @@ while True:
             logging.warning("%s returned %d", current_job, sb.returncode)
             destination_path = failed_jobs_path
 
-    shutil.move(os.path.join(execution_path, current_job),
-                os.path.join(destination_path, current_job))
-
+    try:
+        shutil.move(os.path.join(execution_path, current_job),
+                    os.path.join(destination_path, current_job))
+    except FileNotFoundError as err:
+        logging.warning("FileNotFoundError: {}".format(err))
