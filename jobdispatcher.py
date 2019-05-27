@@ -47,6 +47,7 @@ parser.add_argument('--wait', type=int, default=1, metavar='SEC',
                     "in queue.")
 args = parser.parse_args()
 
+
 # Create subdirectories
 if args.dir:
     base = os.path.join(".", args.dir)
@@ -54,10 +55,10 @@ else:
     base = '../'
 base = os.path.join(base, "gpu" + str(args.gpu))
 
-queue_path = base + '/queue'
+queue_path = os.path.join(base, 'queue')
 execution_path = './'
-completed_jobs_path = base + '/completed'
-failed_jobs_path = base + '/failed'
+completed_jobs_path = os.path.join(base, 'completed')
+failed_jobs_path = os.path.join(base, 'failed')
 logfile_path = base
 
 for directory in [queue_path, execution_path, completed_jobs_path,
